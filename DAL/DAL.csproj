@@ -63,6 +63,10 @@
     <Compile Include="Migrations\202401011735305_DBInit.designer.cs">
       <DependentUpon>202401011735305_DBInit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401012003424_AddBook.cs" />
+    <Compile Include="Migrations\202401012003424_AddBook.designer.cs">
+      <DependentUpon>202401012003424_AddBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BookRepo.cs" />
@@ -75,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202401011735305_DBInit.resx">
       <DependentUpon>202401011735305_DBInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401012003424_AddBook.resx">
+      <DependentUpon>202401012003424_AddBook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

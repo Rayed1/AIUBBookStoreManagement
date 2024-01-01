@@ -11,5 +11,7 @@ namespace DAL.EF.Model
         public long InventoryId { get; set; }
         public long BookId { get; set; }
         public long Quantity { get; set; }
+
+        public string BookName { get; set; }
     }
 }

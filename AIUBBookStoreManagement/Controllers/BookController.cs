@@ -21,8 +21,8 @@ namespace AIUBBookStoreManagement.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var data = BookServices.Add(book);
-                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                    BookServices.Add(book);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Created" });
                 }
                 return Request.CreateResponse(HttpStatusCode.NoContent);
             }
@@ -34,14 +34,14 @@ namespace AIUBBookStoreManagement.Controllers
 
         [HttpPost]
         [Route("api/User/add")]
-        public HttpResponseMessage CreateUser(UserDTO book)
+        public HttpResponseMessage CreateUser(UserDTO user)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var data = BookServices.AddUser(book);
-                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                    BookServices.AddUser(user);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Created" });
                 }
                 return Request.CreateResponse(HttpStatusCode.NoContent);
             }
@@ -59,13 +59,27 @@ namespace AIUBBookStoreManagement.Controllers
                 if (ModelState.IsValid)
                 {
                     var data = BookServices.AddInventory(inv);
-                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Created" });
                 }
                 return Request.CreateResponse(HttpStatusCode.NoContent);
             }
             catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+        [HttpGet]
+        [Route("api/showinventory")]
+        public HttpResponseMessage ShowAllInventory()
+        {
+            try
+            {
+                var data = BookServices.ShowAllInventory();
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
         [HttpGet]

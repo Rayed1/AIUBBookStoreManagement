@@ -124,7 +124,6 @@ namespace BLL.Services
             var config = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, User>());
             var mapper = new Mapper(config);
             var repo = DataAccessFactory.UsersDataAccess().Get();
-            // var bookDTOList = mapper.Map<List<BookDTO>>(repo);
             var data = (from r in repo
                         select new UserDTO
                         {
@@ -140,6 +139,21 @@ namespace BLL.Services
 
 
 
+                        }).ToList();
+            return data;
+        }
+        public static List<InventoryDTO> ShowAllInventory()
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<InventoryDTO, Inventory>());
+            var mapper = new Mapper(config);
+            var repo = DataAccessFactory.InventoryDataAccess().Get();
+            var data = (from r in repo
+                        select new InventoryDTO
+                        {
+                            InventoryId = r.InventoryId,
+                            BookId = r.BookId,
+                            Quantity = r.Quantity,
+                            BookName = r.BookName
                         }).ToList();
             return data;
         }
