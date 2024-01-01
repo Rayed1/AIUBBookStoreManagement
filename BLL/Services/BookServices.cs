@@ -45,6 +45,39 @@ namespace BLL.Services
 
             return null;
         }
+        public static InventoryDTO AddInventory(InventoryDTO t)
+        {
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<InventoryDTO, Inventory>());
+
+
+            Inventory u = new Inventory();
+
+            u.BookId = t.BookId;
+            u.Quantity = t.Quantity;
+            u.BookId = t.BookId;
+
+            var repo = DataAccessFactory.InventoryDataAccess().Add(u);
+
+            return null;
+        }
+        public static PriceDTO AddPrice(PriceDTO p)
+        {
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<PriceDTO, Price>());
+
+
+            Price u = new Price();
+
+            u.BookId = p.BookId;
+            u.BuyingPrice = p.BuyingPrice;
+            u.SellingPrice = p.SellingPrice;
+
+            var repo = DataAccessFactory.PriceDataAccess().Add(u);
+
+            return null;
+        }
+
         public static List<BookDTO> Show()
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, Book>());

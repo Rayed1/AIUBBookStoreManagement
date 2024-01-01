@@ -51,6 +51,43 @@ namespace AIUBBookStoreManagement.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+        [HttpPost]
+        [Route("api/inventory/add")]
+        public HttpResponseMessage CreateInventory(InventoryDTO inv)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var data = BookServices.AddInventory(inv);
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                return Request.CreateResponse(HttpStatusCode.NoContent);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+        [HttpPost]
+        [Route("api/price/add")]
+        public HttpResponseMessage CreatePrice(PriceDTO pri)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var data = BookServices.AddPrice(pri);
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                return Request.CreateResponse(HttpStatusCode.NoContent);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
 
         [HttpGet]
         [Route("api/Book/list")]
@@ -165,6 +202,7 @@ namespace AIUBBookStoreManagement.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
 
     }
 
