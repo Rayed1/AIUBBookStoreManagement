@@ -190,7 +190,7 @@ namespace BLL.Services
                         }).ToList();
             return data;
         }
-        public static bool Logincheack(int intUserId, string password)
+        public static bool Logincheck(int intUserId, string password)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, User>());
             var mapper = new Mapper(config);

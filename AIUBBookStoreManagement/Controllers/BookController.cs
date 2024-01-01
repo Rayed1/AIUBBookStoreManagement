@@ -9,7 +9,6 @@ using System.Web.Http;
 
 namespace AIUBBookStoreManagement.Controllers
 {
-    //[EnableCors("*", "*", "*")]
     public class BookController : ApiController
     {
 
@@ -67,6 +66,48 @@ namespace AIUBBookStoreManagement.Controllers
             catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+        [HttpGet]
+        [Route("api/Logincheck")]
+        public HttpResponseMessage Logincheck(int intUserId, string password)
+        {
+            try
+            {
+                var data = BookServices.Logincheck(intUserId, password);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+        [HttpGet]
+        [Route("api/ShowAllUserByArea")]
+        public HttpResponseMessage ShowAllUserByArea(string address)
+        {
+            try
+            {
+                var data = BookServices.ShowAllUserByArea(address);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+        [HttpGet]
+        [Route("api/ShowAllUserByType")]
+        public HttpResponseMessage ShowAllUserByType(string t)
+        {
+            try
+            {
+                var data = BookServices.ShowAllUserByType(t);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
         [HttpPost]
@@ -145,48 +186,7 @@ namespace AIUBBookStoreManagement.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
-        [HttpGet]
-        [Route("api/ShowAllUserByType")]
-        public HttpResponseMessage ShowAllUserByType(string t)
-        {
-            try
-            {
-                var data = BookServices.ShowAllUserByType(t);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
-            }
-        }
-        [HttpGet]
-        [Route("api/Logincheack")]
-        public HttpResponseMessage Logincheack(int intUserId, string password)
-        {
-            try
-            {
-                var data = BookServices.Logincheack(intUserId, password);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
-            }
-        }
-        [HttpGet]
-        [Route("api/ShowAllUserByArea")]
-        public HttpResponseMessage ShowAllUserByArea(string address)
-        {
-            try
-            {
-                var data = BookServices.ShowAllUserByArea(address);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
-            }
-        }
+        
 
         [HttpGet]
         [Route("api/ReportInventory")]
