@@ -209,7 +209,6 @@ namespace BLL.Services
             var config = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, User>());
             var mapper = new Mapper(config);
             var repo = DataAccessFactory.UsersDataAccess().Get();
-            // var bookDTOList = mapper.Map<List<BookDTO>>(repo);
             var data = (from r in repo
                         where r.IntUserId == intUserId && r.Password == password
                         select new UserDTO
@@ -224,7 +223,13 @@ namespace BLL.Services
                             Password = r.Password,
                             IsActive = r.IsActive
                         }).ToList();
-            if (data.Count > 0) { return true; } else { return false; }
+            if (data.Count > 0) 
+            { 
+                return true; 
+            } else 
+            { 
+                return false; 
+            }
 
         }
         public static List<UserDTO> ShowAllUserByArea(string t)
